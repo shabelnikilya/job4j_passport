@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS passports(
     id SERIAL PRIMARY KEY,
     series VARCHAR(20),
     number VARCHAR(20),
+    UNIQUE(series, number),
     created TIMESTAMP,
     expired TIMESTAMP
 );

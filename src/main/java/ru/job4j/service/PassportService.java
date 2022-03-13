@@ -22,6 +22,11 @@ public class PassportService implements ru.job4j.service.Service {
     }
 
     @Override
+    public Passport findById(int id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
     public void update(int id, Passport passport) {
         passport.setId(id);
         repository.save(passport);

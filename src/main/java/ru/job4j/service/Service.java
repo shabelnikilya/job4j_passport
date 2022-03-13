@@ -6,6 +6,8 @@ public interface Service {
 
     Passport save(Passport passport);
 
+    Passport findById(int id);
+
     void update(int id, Passport passport);
 
     void remove(int id);

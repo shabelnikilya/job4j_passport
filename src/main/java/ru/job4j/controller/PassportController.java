@@ -1,5 +1,6 @@
 package ru.job4j.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.model.Passport;
@@ -23,18 +24,22 @@ public class PassportController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> update(@RequestParam int id, @RequestBody Passport passport) {
-        service.update(id, passport);
-        return ResponseEntity
-                .ok()
-                .build();
+        HttpStatus result = HttpStatus.NOT_FOUND;
+        if (service.findById(id) != null) {
+            result = HttpStatus.OK;
+            service.update(id, passport);
+        }
+        return new ResponseEntity<>(result);
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<Void> delete(@RequestParam int id) {
-        service.remove(id);
-        return ResponseEntity
-                .ok()
-                .build();
+        HttpStatus result = HttpStatus.NOT_FOUND;
+        if (service.findById(id) != null) {
+            result = HttpStatus.OK;
+            service.remove(id);
+        }
+        return new ResponseEntity<>(result);
     }
 
     @GetMapping("/find")
