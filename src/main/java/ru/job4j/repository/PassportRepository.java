@@ -11,7 +11,7 @@ public interface PassportRepository extends CrudRepository<Passport, Integer> {
 
     Iterable<Passport> findBySeries(String series);
 
-    @Query("from Passport p where p.expired > current_timestamp")
+    @Query("from Passport p where p.expired < current_timestamp")
     Iterable<Passport> findByPassportEndAfterNow();
 
     @Query("from Passport p where current_timestamp between :param and p.expired")

@@ -1,5 +1,8 @@
 package ru.job4j.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -14,7 +17,8 @@ public class People {
     private String surname;
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passports_id")
     private Passport passport;
 
     public People() {

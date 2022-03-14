@@ -1,5 +1,7 @@
 package ru.job4j.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -10,6 +12,8 @@ public class Passport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @OneToOne(mappedBy = "passport")
+    private People people;
     private String series;
     private String number;
     @Temporal(TemporalType.TIMESTAMP)
@@ -33,6 +37,15 @@ public class Passport {
 
     public Passport(int id, String series, String number, Date created, Date expired) {
         this.id = id;
+        this.series = series;
+        this.number = number;
+        this.created = created;
+        this.expired = expired;
+    }
+
+    public Passport(int id, People people, String series, String number, Date created, Date expired) {
+        this.id = id;
+        this.people = people;
         this.series = series;
         this.number = number;
         this.created = created;
@@ -69,6 +82,14 @@ public class Passport {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public People getPeople() {
+        return people;
+    }
+
+    public void setPeople(People people) {
+        this.people = people;
     }
 
     @Override
