@@ -1,5 +1,6 @@
 package ru.job4j.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.job4j.model.Passport;
 import ru.job4j.repository.PassportRepository;
@@ -12,6 +13,7 @@ import java.time.ZoneOffset;
 public class PassportService implements ru.job4j.service.Service {
     private final PassportRepository repository;
 
+    @Autowired
     public PassportService(PassportRepository repository) {
         this.repository = repository;
     }

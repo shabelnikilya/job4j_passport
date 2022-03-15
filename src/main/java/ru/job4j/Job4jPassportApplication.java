@@ -1,7 +1,5 @@
 package ru.job4j;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,11 +16,6 @@ public class Job4jPassportApplication {
     @Bean
     public RestTemplate getTemplate() {
         return new RestTemplate();
-    }
-
-    @Bean()
-    public Gson getGson() {
-        return new GsonBuilder().create();
     }
 
     @Bean
